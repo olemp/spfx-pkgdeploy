@@ -1,3 +1,4 @@
+const gulp = require('gulp');
 const spsync = require('gulp-spsync-creds').sync;
 const sppkgDeploy = require('node-sppkg-deploy');
 const { default: pnp, Web } = require('sp-pnp-js');
@@ -17,15 +18,12 @@ function initSpfxPkgDeploy(build, packageSolution, environment) {
     build.task('deleteAppPkg', {
         execute: (config) => {
             return new Promise((resolve, reject) => {
+                const catalogWeb = new Web(`https://${environment.tenant}.sharepoint.com/${environment.catalogSite}`);
                 let filename = packageSolution.paths.zippedPackage;
                 filename = filename.split('/').pop();
-                new Web(`https://${environment.tenant}.sharepoint.com/${environment.catalogSite}`).getFileByServerRelativeUrl(`/${environment.catalogSite}/AppCatalog/${filename}`).delete()
-                    .then(data => {
-                        resolve();
-                    })
-                    .catch(err => {
-                        resolve();
-                    });
+                catalogWeb.getFileByServerRelativeUrl(`/${environment.catalogSite}/AppCatalog/${filename}`).delete()
+                    .then(resolve)
+                    .catch(resolve);
             });
         }
     });
@@ -43,6 +41,9 @@ function initSpfxPkgDeploy(build, packageSolution, environment) {
                         libraryPath: libraryPath,
                         publish: true
                     }))
+                    .on('error', err => {
+                        console.log(err);
+                    })
                     .on('finish', resolve);
             });
         }
