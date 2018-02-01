@@ -8,9 +8,10 @@ Set up your `gulpfile.js` like this:
 const gulp = require('gulp');
 const spfxPkgDeploy = require('spfx-pkgdeploy').default;
 const build = require('@microsoft/sp-build-web');
+const packageSolution = require('./config/package-solution.json');
 build.addSuppression(`Warning - [sass] The local CSS class 'ms-Grid' is not camelCase and will not be type-safe.`);
 
-spfxPkgDeploy(build, {
+spfxPkgDeploy(build, packageSolution, {
     username: "",
     password: "",
     tenant: "",

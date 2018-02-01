@@ -3,7 +3,7 @@ const sppkgDeploy = require('node-sppkg-deploy');
 const { default: pnp, Web } = require('sp-pnp-js');
 const NodeFetchClient = require('node-pnp-js').default;
 
-function initSpfxPkgDeploy(build, environment) {
+function initSpfxPkgDeploy(build, packageSolution, environment) {
     pnp.setup({
         sp: {
             fetchClientFactory: () => {
