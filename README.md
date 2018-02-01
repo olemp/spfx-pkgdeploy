@@ -37,3 +37,5 @@ Like this:
   }
 }
 ```
+
+*NOTE*: The reason `deleteAppPkg` is included in the npm `deploy` script is that we've experienced some issues with upgrading an app package without removing the app package file first. 
