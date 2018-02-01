@@ -1,13 +1,13 @@
 {
   "name": "spfx-pkgdeploy",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "SPFX package deploy made easy",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "olemp",
+  "license": "MIT",
   "dependencies": {
     "gulp-spsync-creds": "^2.3.7",
     "node-pnp-js": "^0.1.3",
