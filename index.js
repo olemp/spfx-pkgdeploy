@@ -42,7 +42,8 @@ function initSpfxPkgDeploy(build, packageSolution, environment) {
                         publish: true
                     }))
                     .on('error', err => {
-                        console.log(err);
+                        console.log(err.message);
+                        reject(err);
                     })
                     .on('finish', resolve);
             });
